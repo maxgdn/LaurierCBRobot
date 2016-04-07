@@ -1,13 +1,18 @@
-package org.usfirst.frc.team3756.robot;
+package org.usfirst.frc.team3756.robot.commands.drivetrain;
+
+import org.usfirst.frc.team3756.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class IntakeButtonHeld extends Command {
-	
-    public IntakeButtonHeld() {
+public class ShiftToLowGear extends Command {
+
+    public ShiftToLowGear() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -16,8 +21,8 @@ public class IntakeButtonHeld extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	new ExtendsIntake();
-    }    
+    	Robot.drivetrain.setLowGear();
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
