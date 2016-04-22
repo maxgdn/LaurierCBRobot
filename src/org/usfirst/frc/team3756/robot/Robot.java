@@ -17,6 +17,7 @@ import org.usfirst.frc.team3756.robot.commands.Autonomous;
 import org.usfirst.frc.team3756.robot.subsystems.BallControlSystem;
 import org.usfirst.frc.team3756.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3756.robot.subsystems.LiftingMech;
+import org.usfirst.frc.team3756.robot.subsystems.MotorController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,15 +30,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-    Command autonomousCommand;
+    Command autonomousCommand1;
+    Command autonomousCommand2;
     
     public static DriveTrain drivetrain;
     public static BallControlSystem ballControl;
     public static LiftingMech liftMech;
+    public static MotorController motorControl;
     public static OI oi;
     
     final String customAuto1 = "Custom Auto 1";
     final String customAuto2 = "Custom Auto 2";
+    final String customAuto3 = "Custom Auto 3";
     String autoSelected;
     SendableChooser autoChooser;
 
@@ -50,6 +54,7 @@ public class Robot extends IterativeRobot {
         drivetrain = new DriveTrain();
         ballControl = new BallControlSystem();
         liftMech = new LiftingMech();
+        motorControl = new MotorController();
         oi = new OI();
         
         CameraServer camera = CameraServer.getInstance();
@@ -57,36 +62,31 @@ public class Robot extends IterativeRobot {
         camera.startAutomaticCapture("cam0");
         
         autoChooser = new SendableChooser();
-    	autoChooser.addDefault("Primary Autonomous Program", customAuto2);
-    	autoChooser.addObject("Secondary Autonomous Program", customAuto1);
+    	autoChooser.addDefault("Drive Foward)", customAuto1);
+    	//autoChooser.addObject("Complex Lowbar", customAuto2);
+    	autoChooser.addObject("SpyBotShoot", customAuto3);
+    	
         SmartDashboard.putData("Auto choices", autoChooser);
         
       // instantiate the command used for the autonomous period
-        autonomousCommand = new Autonomous();
+        autonomousCommand1 = new Autonomous();
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(drivetrain);
         SmartDashboard.putData(ballControl);
         SmartDashboard.putData(liftMech);
-       
         
     }
 
     public void autonomousInit() {
-    	switch(autoSelected) {
-    	case customAuto1:  
-            break;
-    	case customAuto2:
-    		
-    	default:
-    		 autonomousCommand.start();
-            break;
-    	}
+    		 autonomousCommand1.start();
+    	
        // schedule the autonomous command (example)
     }
     
     /**
      * This function is called periodically during autonomous
+     *
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
@@ -97,7 +97,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        autonomousCommand1.cancel();
     }
 
     /**

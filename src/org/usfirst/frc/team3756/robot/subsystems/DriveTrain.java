@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -29,10 +30,8 @@ public class DriveTrain extends Subsystem {
 	
 	public RobotDrive driveRobot;
 	
-	public Compressor mechComp;
-	public DoubleSolenoid gearShifter;
-	
 	public DriveTrain(){
+			
 		 	frontLeft = new Victor(0);
 		    middleLeft = new Victor(1);
 		    backLeft = new Victor(2);
@@ -46,14 +45,9 @@ public class DriveTrain extends Subsystem {
 		    leftSide = new SpeedControllerArray(leftSideMotors);
 		    rightSide = new SpeedControllerArray(rightSideMotors);
 		    
-		    mechComp = new Compressor();
-		    mechComp.setClosedLoopControl(true);
-		    
-		    gearShifter = new DoubleSolenoid(2, 3);
-		    
 		    driveRobot = new RobotDrive(leftSide, rightSide);
-		    driveRobot.setSafetyEnabled(true);
-	        
+		    driveRobot.setSafetyEnabled(false);
+	      
 	}
  
     // Put methods for controlling this subsystem
@@ -61,14 +55,11 @@ public class DriveTrain extends Subsystem {
 	public void drive(Joystick driveStick){
 		driveRobot.arcadeDrive(driveStick);
 	}
-	public void drive(double left, double right){
-		driveRobot.arcadeDrive(left,right);
+	public void drive(double straight,double turn){
+		driveRobot.arcadeDrive(straight,turn);
 	}
-	public void setLowGear(){
-		gearShifter.set(DoubleSolenoid.Value.kReverse);
-	}
-	public void setHighGear(){
-		gearShifter.set(DoubleSolenoid.Value.kForward);
+	public void stopDT(){
+		driveRobot.arcadeDrive(0,0);
 	}
 	
     public void initDefaultCommand() {

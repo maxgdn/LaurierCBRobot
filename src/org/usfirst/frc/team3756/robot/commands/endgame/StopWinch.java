@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3756.robot.commands.drivetrain;
+package org.usfirst.frc.team3756.robot.commands.endgame;
 
 import org.usfirst.frc.team3756.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftToLowGear extends Command {
+public class StopWinch extends Command {
 
-    public ShiftToLowGear() {
+    public StopWinch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	requires(Robot.liftMech);
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +21,12 @@ public class ShiftToLowGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.setLowGear();
+    	Robot.liftMech.stopMovingRobot();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

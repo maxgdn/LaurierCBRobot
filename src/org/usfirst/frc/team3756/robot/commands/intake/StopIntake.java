@@ -7,21 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftUpIntake extends Command {
+public class StopIntake extends Command {
 
-    public LiftUpIntake() {
+    public StopIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballControl);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballControl.intakeShifterUP();
+    	Robot.ballControl.intakeRoller.stopMotor();
     }
 
     // Make this return true when this Command no longer needs to run execute()

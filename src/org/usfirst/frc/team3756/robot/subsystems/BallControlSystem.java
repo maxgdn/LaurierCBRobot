@@ -27,11 +27,14 @@ public class BallControlSystem extends Subsystem {
 	}
 	public void shootLowGoal(){
 		intakeRoller.setInverted(true);
-    	intakeRoller.set(2);
+    	intakeRoller.set(1);
 	}
 	public void intakeBall(){
 		intakeRoller.setInverted(false);
 		intakeRoller.set(1);
+	}
+	public void stopMotor(){
+		intakeRoller.set(0);
 	}
 
     public void initDefaultCommand() {

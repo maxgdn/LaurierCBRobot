@@ -21,6 +21,7 @@ public class EndGameLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("HELLO !#!##!$!$!$!s");
     	Robot.liftMech.liftRobot();
     }
 
@@ -31,6 +32,7 @@ public class EndGameLift extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	//Robot.liftMech.stopMovingRobot();
     }
 
     // Called when another command which requires one or more of the same

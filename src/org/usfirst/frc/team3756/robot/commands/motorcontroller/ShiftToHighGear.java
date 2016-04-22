@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3756.robot.commands.intake;
+package org.usfirst.frc.team3756.robot.commands.motorcontroller;
 
 import org.usfirst.frc.team3756.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftUpIntake extends Command {
+public class ShiftToHighGear extends Command {
 
-    public LiftUpIntake() {
+    public ShiftToHighGear() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballControl);
+    	requires(Robot.motorControl);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class LiftUpIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballControl.intakeShifterUP();
+    	Robot.motorControl.setHighGear();
     }
 
     // Make this return true when this Command no longer needs to run execute()

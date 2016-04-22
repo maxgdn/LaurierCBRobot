@@ -41,7 +41,7 @@ public class SpeedControllerArray implements SpeedController {
 	@Override
 	public void set(double speed, byte syncGroup) {
 		for (SpeedController motor : motors) {
-			this.set(speed, syncGroup);
+			motor.set(speed, syncGroup);
 		} //End of for statement
 	} //End of set (speed and syncGroup)
 
