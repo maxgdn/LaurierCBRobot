@@ -22,9 +22,5 @@ public class Autonomous extends CommandGroup {
     	addSequential(new TimedDriveForward(1.0,0));
     	addSequential(new TimedDriveForward(2.5,1));*/
     	
-
-    /*	addSequential(new PrepareToPickup());
-        addParallel(new SetWristSetpoint(-45));
-        addSequential(new CloseClaw());*/
     }
 }
